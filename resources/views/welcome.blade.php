@@ -24,6 +24,8 @@
  
 @endsection
 @section('tabla')
+
+
                     <hr class="my-4">
                     <table class="table table-dark">
                         <thead>
@@ -37,7 +39,7 @@
                         <tbody>
                             <tr>
                             <th scope="row">1</th>
-                            <td>Mark</td>
+                            <td>jacob</td>
                             <td>Otto</td>
                             <td>@mdo</td>
                             </tr>
