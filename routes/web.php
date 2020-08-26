@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+//Route::post('/inicio', 'inicioController@store');
+//Route::get('/inicio', 'inicioController@index');
+
+Route::resource('/inicio', 'inicioController');
