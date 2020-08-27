@@ -30,7 +30,7 @@ Proceso de instalación:
 	7. Debemos aceptar las licencias de php para proceder.  A continuación, dada la instalación de Composer, se nos explica que al haberlo instalado puede que otras dependencias aún no lo reconozcan, por lo que se dan algunas sugerencias en caso de errores.  Con esto termina la instalación de Composer.
 (Ahora,se debe verificar que la ruta de composer se encuentre en las variables de entorno, de esta manera podemos llamarlo para crear un nuevo proyecto. )
 
-Configuración: 
+Creación y despliegue: 
 	
 	1. Para crear un nuevo proyecto, nos dirigimos en cmd a la ruta en donde se desea crear el proyecto y allí ejecutamos la línea:
 
