@@ -14,3 +14,16 @@
 Route::get('/', function () {
     return view('welcome');
 });
+<<<<<<< Updated upstream
+=======
+
+
+//Route::post('/inicio', 'inicioController@store');
+
+Route::resource('/inicio', 'inicioController'); 
+
+Route::resource('/firebase', 'FireBaseController');
+
+Route::delete('/delete', 'FireBaseController@destroy');
+
+>>>>>>> Stashed changes
