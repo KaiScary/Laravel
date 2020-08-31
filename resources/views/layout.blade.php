@@ -35,6 +35,12 @@
                     </div>
 
                 </div>
+                <div class="container">
+                    <div class="table-responsive">
+                    @yield('editar')
+                    </div>
+
+                </div>
                 <hr class="my-4">
                 <div class="text-center">
 	        	<label>Juliana Perez - Lina Ramirez - Karem Pinto - Juan Sanchez </label>

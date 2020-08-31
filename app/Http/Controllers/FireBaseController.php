@@ -23,8 +23,6 @@ class FireBaseController extends Controller
     	foreach($subjects as $s){
     	    $all_subjects[] = $s;
     	}
-       //return json_encode($all_subjects);
-        //    return view('tablaFirebase',compact('all_subjects'));
         if($id!=""){
             
          $all_subjects = $ref->OrderByChild('correo')->equalTo($id)->getValue();
@@ -62,18 +60,95 @@ class FireBaseController extends Controller
     }
 
     public function destroy($id){
+        $correoId=$id;
         $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/firebase.json');
         $firebase = (new Factory)
             ->withServiceAccount($serviceAccount)
             ->create();
 
     	$database = $firebase->getDatabase();
+        $ref=$database->getReference('Usuario');
 
+        $llaves=$database->getReference('Usuario')->getChildKeys();
+
+        foreach ($llaves as $ll) {
+            $datos = $ref->getChild($ll)->getValue();
+            foreach ($datos as $d => $value) {
+                 if($datos['correo']==$correoId){
+                        $ref->getChild($ll)->remove();
+                    }
+            }
+           
+        }
+        $subjects = $ref->getValue();
+        foreach($subjects as $s){
+            $all_subjects[] = $s;
+        }
     
-    return "231213";
+    return view('tablaFirebase',compact('all_subjects'));
     }
 
     public function show(){
 
+    }
+    public function update(Request $request,$id){
+             $correoN=$request->get('correo');
+        $contraseñaN=$request->get('contraseña');
+        $correoId=$id;
+        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/firebase.json');
+        $firebase = (new Factory)
+            ->withServiceAccount($serviceAccount)
+            ->create();
+
+        $database = $firebase->getDatabase();
+        $ref=$database->getReference('Usuario');
+
+        $llaves=$database->getReference('Usuario')->getChildKeys();
+
+        foreach ($llaves as $ll) {
+            $datosN = $ref->getChild($ll)->getValue();
+            foreach ($datosN as $d) {
+                if($datosN['correo']==$correoId){
+                     $ref->getChild($ll)->set([
+                      'correo'=>$correoN,
+                        'contraseña'=>$contraseñaN
+                            ]);
+
+                }
+            }
+                       
+        }
+        $subjects = $ref->getValue();
+        foreach($subjects as $s){
+            $all_subjects[] = $s;
+        }
+    
+            return view('tablaFirebase',compact('all_subjects'));
+    }
+
+     public function edit($id){
+       
+
+        $correoId=$id;
+        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/firebase.json');
+        $firebase = (new Factory)
+            ->withServiceAccount($serviceAccount)
+            ->create();
+
+        $database = $firebase->getDatabase();
+        $ref=$database->getReference('Usuario');
+
+        $llaves=$database->getReference('Usuario')->getChildKeys();
+
+        foreach ($llaves as $ll) {
+            $datosN = $ref->getChild($ll)->getValue();
+            foreach ($datosN as $d) {
+                if($datosN['correo']==$correoId){
+                        $datos=$datosN;
+                }
+            }
+            
+        }
+        return view('edit',compact('datos'));
     }
 }

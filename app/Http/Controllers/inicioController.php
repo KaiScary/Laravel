@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-//inicializacion del array
 
 class inicioController extends Controller
 {
@@ -21,7 +20,6 @@ class inicioController extends Controller
 
     	$numero=24213;
  
-    	
         //envío de parametros a la vista welcome
     	return view('welcome',["correo"=>$correo,"contraseña"=>$contraseña,"numero"=>$numero]);	
     }
